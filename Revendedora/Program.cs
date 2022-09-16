@@ -24,11 +24,16 @@ namespace Revendedora
             Console.WriteLine($"Você tem {total} dias de idade!");*/
 
             ///Exercício 2
-            /*SELECT Produto.NOME_PROD, SUM(Cores.PRECO_COR + Produto.PRECO_PROD) AS Preco_Produto FROM Produto
-            INNER JOIN Cores
+            /*SELECT Produto.NOME_PROD, IIF(Cores.PRECO_COR IS NULL, Produto.PRECO_PROD, SUM(Cores.PRECO_COR + Produto.PRECO_PROD)) AS Preco_Produto,
+            IIF(Cores.PRECO_COR IS NULL, SUM((Produto.PRECO_PROD) * 0.1 + Produto.PRECO_PROD),
+            SUM((Cores.PRECO_COR + Produto.PRECO_PROD) * 0.1 + Cores.PRECO_COR + Produto.PRECO_PROD)) AS Preco_Produto_Acrescimo,
+            IIF(Cores.PRECO_COR IS NULL, SUM((-Produto.PRECO_PROD) * 0.1 + Produto.PRECO_PROD),
+            SUM((-Cores.PRECO_COR - Produto.PRECO_PROD) * 0.1 + Cores.PRECO_COR + Produto.PRECO_PROD)) AS Preco_Produto_Desconto,
+            Cores.NOME_COR FROM Produto
+            LEFT JOIN Cores
             ON Cores.IDPRODUTO = Produto.IDPRODUTO
             WHERE Produto.NOME_PROD IS NOT NULL
-            GROUP BY Produto.NOME_PROD
+            GROUP BY Produto.NOME_PROD, Produto.PRECO_PROD, Cores.NOME_COR, Cores.PRECO_COR
             ORDER BY Preco_Produto*/
 
             ///Exercício 3
